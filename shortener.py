@@ -1,3 +1,6 @@
+import secrets
+
+from common.constants import Constants
 from common.factory import Factory, Components
 
 
@@ -6,13 +9,10 @@ class Shortener:
         dynamo_client = Factory.create(Components.DataClients.DynamoDB)
 
     def shorten(self, url):
-        url_hash = self._get_hash(url)
-        return self._store_hash(url_hash)
+        url_key = "".join(secrets.choice(Constants.KEY_ALPHABET) for _ in range(Constants.KEY_LENGTH))
+        return self._store_hash(url, url_key)
 
-    def _get_hash(self, url):
-        raise NotImplementedError()
-
-    def _store_hash(self, url_hash):
+    def _store_hash(self, url, url_key):
         raise NotImplementedError()
 
 
