@@ -1,7 +1,6 @@
 from enum import Enum
 
-from common.settings import Settings
-from common.constants import Constants
+from common.clients.dynamodb_client import DynamoClient
 
 class Components:
     class DataClients(Enum):
@@ -17,8 +16,5 @@ class Factory:
     @staticmethod
     def _create_data_client(component_type, **kwargs):
         if component_type == Components.DataClients.DynamoDB:
-            if Settings.ENV == Constants.LOCAL:
-                return None
-            elif Settings.ENV == Constants.PROD:
-                return None
+            return DynamoClient(table_name=kwargs.get('table_name'))
         return None

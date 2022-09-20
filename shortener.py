@@ -6,13 +6,21 @@ from common.factory import Factory, Components
 
 class Shortener:
     def __init__(self):
-        dynamo_client = Factory.create(Components.DataClients.DynamoDB)
+        self.dynamo_client = Factory.create(Components.DataClients.DynamoDB, table_name=Constants.SHORTENER_TABLE_NAME)
 
     def shorten(self, url):
-        url_key = "".join(secrets.choice(Constants.KEY_ALPHABET) for _ in range(Constants.KEY_LENGTH))
-        return self._store_hash(url, url_key)
+        result = {}
+        while not result:
+            url_key = "".join(secrets.choice(Constants.KEY_ALPHABET) for _ in range(Constants.KEY_LENGTH))
+            result = self._store_hash(url, url_key)
+        return result
 
     def _store_hash(self, url, url_key):
-        raise NotImplementedError()
+        item = {
+            "key": url_key,
+            "url": url,
+            "click": 0
+        }
+        return self.dynamo_client.insert_item(item)
 
 
