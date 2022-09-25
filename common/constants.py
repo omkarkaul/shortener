@@ -6,12 +6,13 @@ class Constants:
     LOCAL_DYNAMO_URL = "http://localhost:8000"
     SHORTENER_TABLE_NAME = "shortener"
     SHORTENER_TABLE_KEY_SCHEMA = [
-        {'AttributeName': 'key', 'KeyType': 'RANGE'},
-        {'AttributeName': 'url', 'KeyType': 'HASH'},
-        {'AttributeName': 'clicks', 'KeyType': 'HASH'}
+        {'AttributeName': 'key', 'KeyType': 'HASH'},
     ]
     SHORTENER_TABLE_ATTRIBUTE_DEFS = [
         {'AttributeName': 'key', 'AttributeType': 'S'},
-        {'AttributeName': 'url', 'AttributeType': 'S'},
-        {'AttributeName': 'clicks', 'AttributeType': 'N'}
     ]
+    SHORTENER_THROUGHPUT = {
+        'ReadCapacityUnits': 10,
+        'WriteCapacityUnits': 10
+    }
+    HTTP_SUCCESS = 200
