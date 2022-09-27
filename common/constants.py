@@ -16,3 +16,12 @@ class Constants:
         'WriteCapacityUnits': 10
     }
     HTTP_SUCCESS = 200
+    HTTP_SUCCESS_MESSAGE = "Success"
+    HTTP_CREATED = 201
+    HTTP_CREATED_MESSAGE = 'Created'
+    HTTP_SERVER_FAIL = 500
+    HTTP_SERVER_FAIL_MESSAGE = "Server error"
+    HTTP_BAD_REQUEST = 400
+    HTTP_BAD_REQUEST_MESSAGE = "Bad request"
+    HTTP_NOT_FOUND = 404
+    HTTP_NOT_FOUND_MESSAGE = "Not found"

@@ -9,7 +9,7 @@ class Components:
 class Factory:
     @staticmethod
     def create(component_type, **kwargs):
-        if isinstance(component_type, Components.DataClients.DynamoDB):
+        if isinstance(component_type, Components.DataClients):
             return Factory._create_data_client(component_type, **kwargs)
         return None
 
